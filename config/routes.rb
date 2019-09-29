@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :posts do
-    resources :comment, only: [:new, :create]
+    resources :comments, only: [:new, :create]
   end
   
   devise_for :users

@@ -1,0 +1,13 @@
+
+<% @posts.each do |post| %>
+
+<h1> <%= link_to post.title, post %></h1>
+<br><br>
+<h2><%= post.body %></h2>
+<br><br>
+<h3>Posted by:</h3>
+<br>
+<h3><%= post.user.email %></h3>
+<br><br><br>
+
+<% end %>
