@@ -1,26 +1,48 @@
-<h1><%= @post.title %> </h1>
-<br><br>
-<h2><%= @post.body %></h2>
-<br>
-<h3>Posted by</h3>
-<br>
-<%= @post.user.email %>
-<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1><%= @post.title %> </h1>
+      <table class="table table-bordered">
+        <h3><%= @post.body %></h3>
+        <tbody>
+          <tr>
+            <th scope="row">Posted by</th>
+            <td><%= @post.user.email %></td>
+          </tr> 
+        </tbody>
+      </table>
 
-<% @post.comments.each do |comment| %>
-<br>
-  <h4><%= comment.body %></h4>
-  <h4>by</h4>
-  <h4><%= comment.name %></h4>
-<% end %>
-<br><br>
-<h4>Make a new comment:</h4>
-<br><br>
-<%= simple_form_for [@post, @comment] do |f| %>
-  <%= f.input :name, label: 'your nickname' %>
-  <%= f.input :body, label: 'your comment' %>
-  <%= f.button :submit %>
-<% end %>
-<br><br>
-<%= link_to 'Edit', edit_post_path(@post) if policy(@post).update?%>
-<%= link_to 'Delete', post_path(@post), method: :delete if policy(@post).destroy? %>
+      <% @post.comments.each do |comment| %>
+            <table class="table table-bordered">
+              <h4><%= comment.body %></h4>
+              <tbody>
+                <tr>
+                  <th scope="row">Comment by</th>
+                  <td><%= comment.name %></td>
+                </tr> 
+              </tbody>
+            </table>
+
+        <% end %>
+
+
+
+      <br><br>
+      <h4>Make a new comment:</h4>
+      <br><br>
+      <%= simple_form_for [@post, @comment] do |f| %>
+        <%= f.input :name, label: 'your nickname' %>
+        <%= f.input :body, label: 'your comment' %>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+      <br><br>
+
+
+      <% if policy(@post).update? %>
+        <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-primary" %>
+      <% end %>
+
+
+      <% if policy(@post).destroy? %>
+        <%= link_to 'Delete', post_path(@post), method: :delete, class: "btn btn-danger" %>
+      <% end %>

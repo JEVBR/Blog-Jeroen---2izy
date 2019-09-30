@@ -1,7 +1,6 @@
 <%= simple_form_for(@post) do |f| %>
-
+<%= f.button :submit, class: "btn btn-primary", value: "Place Post" %>
 <%= f.input :title %>
-<%= f.input :body %>
+<%= f.input :body, label: "Post text" %>
 
-<%= f.button :submit %>
 <% end %>

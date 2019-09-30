@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment.post = @post
     @comment.save
-    redirect_to post_path(@post)
+    redirect_to post_path(@post), notice: 'Comment was sucessfully created'
   end
 
   private

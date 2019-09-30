@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.create(post_params)
     authorize @post
     if @post.save
-      redirect_to @post
+      redirect_to @post, notice: 'Post was sucessfully created'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post
+      redirect_to @post, notice: 'Post was sucessfully updated'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url
+    redirect_to posts_url, notice: 'Post was sucessfully removed'
   end
 
   private
