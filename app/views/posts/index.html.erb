@@ -8,7 +8,7 @@
           <li class="list-group-item">
             <h1> <%= link_to post.title, post %></h1>
             <br><br>
-            <h3><%= post.body %></h3>
+            <h3><%= post.body.truncate_words(50) %></h3>
             <br><br>
             <h4>Posted by:</h4>
             <br>
